@@ -1,24 +1,48 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Back End
 
-Things you may want to cover:
+A simple table based on the provided API. You can download the JSON, CSV, and print the API response in the console.
 
-* Ruby version
+Ruby on Rails was utilized in the development.
 
-* System dependencies
+```bash
+    ruby 3.3.1
+    rails 7.1.5
+```
 
-* Configuration
+## Dependencies
 
-* Database creation
+Install dependencies using the following:
 
-* Database initialization
+```bash
+bundle install
+```
 
-* How to run the test suite
+### Gems used
 
-* Services (job queues, cache servers, search engines, etc.)
+This app utilizes the gem:
 
-* Deployment instructions
+```
+gem 'rack-cors'
+```
 
-* ...
+to allow cross-origin access.
+
+In the **config/initializers/cors.rb** file, in **line 10**:
+
+    origins "http://localhost:3001" 
+    #change to actual front-end port if not running at port 3001
+## Running the Server
+
+```bash
+rails s
+```
+
+## Front End
+
+Here is the link for the FE server (ReactJS)
+
+```https
+https://github.com/lbmartinez2/fe_fc_activities
+```
+
