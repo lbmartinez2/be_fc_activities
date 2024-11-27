@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+require 'net/http'
+require 'json'
+require 'csv'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ./activity -n NUMBER -f FORMAT"
+
+  opts.on('-n NUMBER', Integer, 'Number of API calls') { |n| options[:number] = n }
+  opts.on('-f FORMAT', String, 'Output format (json, csv, console)') { |f| options[:format] = f }
+end.parse!
+
+api_url = 'https://bored-api.appbrewery.com/random'
+responses = Array.new(options[:number]) do
+  JSON.parse(Net::HTTP.get(URI(api_url)))
+end
+
+case options[:format]
+when 'json'
+  File.write('activities.json', JSON.pretty_generate(responses))
+  puts "Data saved to activities.json"
+when 'csv'
+  CSV.open('activities.csv', 'w') do |csv|
+    csv << responses.first.keys
+    responses.each { |response| csv << response.values }
+  end
+  puts "Data saved to activities.csv"
+when 'console'
+  puts JSON.pretty_generate(responses)
+else
+  puts "Invalid format! Use json, csv, or console."
+end
