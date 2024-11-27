@@ -3,6 +3,14 @@
 
 A simple table based on the provided API. You can download the JSON, CSV, and print the API response in the console.
 
+You can run
+
+```bash'
+./activity -n 10 -f json
+./activity -n 5 -f csv
+./activity -n 15 -f console
+```
+
 Ruby on Rails was utilized in the development.
 
 ```bash
